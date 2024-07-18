@@ -1,0 +1,14 @@
+{
+  "name": "chat",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "nest start chat --watch"
+  },
+  "dependencies": {
+    "@nestjs/platform-ws": "^10.3.10",
+    "@nestjs/websockets": "^10.3.10",
+    "reflect-metadata": "^0.1.13",
+    "socket.io": "^4.7.5"
+  },
+  "devDependencies": {}
+}

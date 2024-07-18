@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 import { IsEmail, IsOptional } from 'class-validator';
 
 @Entity()
@@ -16,10 +16,12 @@ export class User {
   @Column({ type: 'varchar', length: 50 })
   email: string;
 
-  @Column({ type: 'timestamp with local time zone', default: () => 'CURRENT_TIMESTAMP' })
+  @CreateDateColumn()
+  // @Column({ type: 'timestamp with local time zone', default: () => 'CURRENT_TIMESTAMP' })
   createdAt: Date;
 
-  @Column({ type: 'timestamp with local time zone', default: () => 'CURRENT_TIMESTAMP' })
+  @UpdateDateColumn()
+  // @Column({ type: 'timestamp with local time zone', default: () => 'CURRENT_TIMESTAMP' })
   updatedAt: Date;
 
   @IsOptional()

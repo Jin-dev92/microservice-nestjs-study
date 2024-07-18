@@ -1,1 +1,1 @@
-export * from './user-database.factory';
+export * from './database.option.factory';
