@@ -1,11 +1,18 @@
 {
   "name": "database",
   "version": "1.0.0",
+  "scripts": {
+    "migration:create": "typeorm migration:create ./src/migrations/create-table",
+    "migration:run": "typeorm  migration:run -- -d ./src/migrations",
+    "migration:revert": "typeorm migration:revert"
+  },
   "dependencies": {
     "@nestjs/typeorm": "^10.0.2",
     "mysql2": "^3.10.3",
     "reflect-metadata": "^0.1.13",
     "typeorm": "^0.3.20"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "ts-node": "^10.9.2"
+  }
 }

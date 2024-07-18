@@ -20,8 +20,7 @@ export class DatabaseModule {
         TypeOrmModule.forRootAsync({
           imports: [ConfigModule],
           inject: [ConfigService],
-          useFactory: (configService: ConfigService) =>
-            databaseOptionFactory(configService, modelName),
+          useFactory: databaseOptionFactory,
         }),
       ],
       exports: [DatabaseModule],
