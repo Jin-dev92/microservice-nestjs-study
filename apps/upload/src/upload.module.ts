@@ -11,7 +11,7 @@ import { multerOptionsFactory } from './factory';
       imports: [
         ConfigModule.forRoot({
           isGlobal: true,
-          envFilePath: process.env.NODE_ENV ? `.${process.env.NODE_ENV}.env` : '.env',
+          envFilePath: process.env.NODE_ENV ? `/.${process.env.NODE_ENV}.env` : '/.env',
         }),
       ],
       useFactory: multerOptionsFactory,

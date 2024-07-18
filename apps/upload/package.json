@@ -1,0 +1,15 @@
+{
+  "name": "upload",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "nest start upload --watch"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.614.0",
+    "multer-s3": "^3.0.1",
+    "reflect-metadata": "^0.1.13"
+  },
+  "devDependencies": {
+    "@types/multer-s3": "^3.0.3"
+  }
+}

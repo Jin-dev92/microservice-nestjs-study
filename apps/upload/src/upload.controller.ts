@@ -21,7 +21,6 @@ export class UploadController {
     file: Express.MulterS3.File,
   ) {
     const uploaded = this.uploadService.uploadFile(file);
-    console.log(uploaded);
     return {
       path: uploaded.originalname,
     };

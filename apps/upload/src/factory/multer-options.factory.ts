@@ -1,10 +1,10 @@
 import { S3Client } from '@aws-sdk/client-s3';
 import { ConfigService } from '@nestjs/config';
-import { MulterOptions } from '@nestjs/platform-express/multer/interfaces/multer-options.interface';
 import * as multerS3 from 'multer-s3';
 import { basename, extname } from 'path';
+import { IMulterOptions } from '../types';
 
-export const multerOptionsFactory = (configService: ConfigService): MulterOptions => {
+export const multerOptionsFactory = (configService: ConfigService): IMulterOptions => {
   const s3 = new S3Client({
     region: configService.get('AWS_S3_REGION'),
     credentials: {
@@ -12,9 +12,6 @@ export const multerOptionsFactory = (configService: ConfigService): MulterOption
       secretAccessKey: configService.get('AWS_SECRET_ACCESS_KEY'),
     },
   });
-  // console.log('@@@@@@');
-  // console.log(configService.get('AWS_S3_BUCKET'));
-  // const storage = configService.get('NODE_ENV') === "local" ? multer.memoryStorage();
 
   return {
     storage: multerS3({
