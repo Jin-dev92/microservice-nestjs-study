@@ -4,7 +4,10 @@ import * as multerS3 from 'multer-s3';
 import { basename, extname } from 'path';
 import { IMulterOptions } from '../types';
 
-export const multerOptionsFactory = (configService: ConfigService): IMulterOptions => {
+export const multerOptionsFactory = (
+  configService: ConfigService,
+): IMulterOptions => {
+  console.log(configService);
   const s3 = new S3Client({
     region: configService.get('AWS_S3_REGION'),
     credentials: {

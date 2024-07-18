@@ -10,11 +10,13 @@ import {
 
 import { Server, Socket } from 'socket.io';
 
-@WebSocketGateway(8080, {
+@WebSocketGateway(+process.env.PORT, {
   transports: ['websocket'],
   cors: { origin: '*' },
 })
-export class ChatGateway implements OnGatewayInit, OnGatewayConnection, OnGatewayDisconnect {
+export class ChatGateway
+  implements OnGatewayInit, OnGatewayConnection, OnGatewayDisconnect
+{
   @WebSocketServer()
   server: Server;
 
@@ -26,7 +28,10 @@ export class ChatGateway implements OnGatewayInit, OnGatewayConnection, OnGatewa
 
   @SubscribeMessage('events')
   handleEvent(client: Socket, message: string): WsResponse<string> {
-    return { event: 'events', data: `서버에서 메시지가 도착했습니다. 테스트용, ${message}` };
+    return {
+      event: 'events',
+      data: `서버에서 메시지가 도착했습니다. 테스트용, ${message}`,
+    };
   }
 
   handleConnection(client: Socket, ...args: any[]): void {
