@@ -10,8 +10,7 @@ import { multerOptionsFactory } from './factory';
     MulterModule.registerAsync({
       imports: [
         ConfigModule.forRoot({
-          isGlobal: true,
-          envFilePath: process.env.NODE_ENV ? `/.${process.env.NODE_ENV}.env` : '/.env',
+          envFilePath: 'apps/upload/.env',
         }),
       ],
       useFactory: multerOptionsFactory,

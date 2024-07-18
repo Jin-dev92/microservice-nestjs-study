@@ -3,6 +3,8 @@ import { UploadModule } from './upload.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(UploadModule);
-  await app.listen(3001);
+
+  await app.listen(process.env.PORT);
 }
+
 bootstrap();
