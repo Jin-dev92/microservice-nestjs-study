@@ -1,6 +1,15 @@
 import { BaseRepository } from './core';
-import { User } from '../entities';
+import { User } from '@app/database/schema';
+import { Model } from 'mongoose';
+import { InjectModel } from '@nestjs/mongoose';
+import { Injectable } from '@nestjs/common';
 
+@Injectable()
 export class UserRepository extends BaseRepository<User> {
-  /* TYPEORM 함수의 오버라이딩이 필요한 경우 이곳에 구현 */
+  constructor(
+    @InjectModel(User.name)
+    private readonly model: Model<User>,
+  ) {
+    super(model);
+  }
 }

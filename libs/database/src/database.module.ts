@@ -1,7 +1,7 @@
 import { DynamicModule, Module } from '@nestjs/common';
 import { DatabaseService } from './database.service';
-import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { MongooseModule } from '@nestjs/mongoose';
 import { databaseOptionFactory } from '@app/database/factory';
 
 @Module({
@@ -17,7 +17,7 @@ export class DatabaseModule {
         ConfigModule.forRoot({
           envFilePath: `apps/${modelName}/.env`,
         }),
-        TypeOrmModule.forRootAsync({
+        MongooseModule.forRootAsync({
           imports: [ConfigModule],
           inject: [ConfigService],
           useFactory: databaseOptionFactory,

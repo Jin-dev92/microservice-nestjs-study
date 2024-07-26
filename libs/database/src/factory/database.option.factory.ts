@@ -1,26 +1,12 @@
 import { ConfigService } from '@nestjs/config';
-import { TypeOrmModuleOptions } from '@nestjs/typeorm';
+import { MongooseModuleFactoryOptions } from '@nestjs/mongoose/dist/interfaces/mongoose-options.interface';
 
 export const databaseOptionFactory = (
   configService: ConfigService,
-): TypeOrmModuleOptions | Promise<TypeOrmModuleOptions> => {
+): Promise<MongooseModuleFactoryOptions> | MongooseModuleFactoryOptions => {
+  const uri = `mongodb://${configService.get('DB_HOST')}/${configService.get('DB_DATABASE')}`;
   return {
-    type: 'mysql',
-    host: configService.get('DB_HOST'),
-    port: +configService.get('DB_PORT'),
-    logging: true,
-    username: configService.get('DB_USERNAME'),
-    password: configService.get('DB_PASSWORD'),
-    database: configService.get('DB_DATABASE'),
-    retryDelay: Math.floor(Math.random() * 3 * 1000) + 3,
-    retryAttempts: 3,
-    entities: [
-      `../entities/${configService.get('DB_DATABASE')}/*.entities{.ts,.js}`,
-    ],
-    migrations: [
-      `../migrations/${configService.get('DB_DATABASE')}//migrations/*.js`,
-    ],
-    migrationsRun: false,
-    synchronize: false,
+    uri,
+    retryAttempts: 5,
   };
 };
